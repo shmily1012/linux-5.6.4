@@ -2776,8 +2776,7 @@ int nvme_init_identify(struct nvme_ctrl *ctrl)
 		dev_err(ctrl->device, "Identify Controller failed (%d)\n", ret);
 		return -EIO;
 	}
-
-	// printk("nvme init identify command finishes.");
+	dev_info(ctrl->device, "nvme_init_identify(%s)\n", ctrl->ops->name);
 	if (id->lpa & NVME_CTRL_LPA_CMD_EFFECTS_LOG) {
 		ret = nvme_get_effects_log(ctrl);
 		if (ret < 0)

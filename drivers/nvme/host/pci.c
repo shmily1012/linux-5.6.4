@@ -2832,8 +2832,7 @@ static int nvme_probe(struct pci_dev *pdev, const struct pci_device_id *id)
 	if (result)
 		goto release_mempool;
 
-	dev_info(dev->ctrl.device, "(old)pci function %s\n", dev_name(&pdev->dev));
-	dev_info(dev->ctrl.device, "(new)pci function %s\n", dev_name(&pdev->dev));
+	dev_info(dev->ctrl.device, "pci function %s\n", dev_name(&pdev->dev));
 	
 	nvme_reset_ctrl(&dev->ctrl);
 	nvme_get_ctrl(&dev->ctrl);
