@@ -141,6 +141,7 @@ EXPORT_SYMBOL_GPL(nvme_try_sched_reset);
 
 int nvme_reset_ctrl(struct nvme_ctrl *ctrl)
 {
+	dev_info(ctrl->device, "nvme_reset_ctrl starts\n");
 	if (!nvme_change_ctrl_state(ctrl, NVME_CTRL_RESETTING))
 		return -EBUSY;
 	if (!queue_work(nvme_reset_wq, &ctrl->reset_work))
@@ -2760,7 +2761,6 @@ int nvme_init_identify(struct nvme_ctrl *ctrl)
 	int ret, page_shift;
 	u32 max_hw_sectors;
 	bool prev_apst_enabled;
-	dev_info(ctrl->device, "nvme_init_identify starts\n");
 	ret = ctrl->ops->reg_read32(ctrl, NVME_REG_VS, &ctrl->vs);
 	if (ret) {
 		dev_err(ctrl->device, "Reading VS failed (%d)\n", ret);
