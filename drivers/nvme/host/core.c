@@ -1255,6 +1255,7 @@ static int nvme_submit_io(struct nvme_ns *ns, struct nvme_user_io __user *uio)
 	unsigned length, meta_len;
 	void __user *metadata;
 
+	printk("nvme_submit_io command start.");
 	if (copy_from_user(&io, uio, sizeof(io)))
 		return -EFAULT;
 	if (io.flags)
@@ -2737,7 +2738,7 @@ int nvme_init_identify(struct nvme_ctrl *ctrl)
 	int ret, page_shift;
 	u32 max_hw_sectors;
 	bool prev_apst_enabled;
-	printk("nvme init identify command starts.");
+	// printk("nvme init identify command starts.");
 	ret = ctrl->ops->reg_read32(ctrl, NVME_REG_VS, &ctrl->vs);
 	if (ret) {
 		dev_err(ctrl->device, "Reading VS failed (%d)\n", ret);
@@ -2755,7 +2756,7 @@ int nvme_init_identify(struct nvme_ctrl *ctrl)
 		return -EIO;
 	}
 
-	printk("nvme init identify command finishes.");
+	// printk("nvme init identify command finishes.");
 	if (id->lpa & NVME_CTRL_LPA_CMD_EFFECTS_LOG) {
 		ret = nvme_get_effects_log(ctrl);
 		if (ret < 0)
