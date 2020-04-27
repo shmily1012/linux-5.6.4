@@ -141,7 +141,7 @@ EXPORT_SYMBOL_GPL(nvme_try_sched_reset);
 
 int nvme_reset_ctrl(struct nvme_ctrl *ctrl)
 {
-	dev_info(ctrl->device, "nvme_reset_ctrl (%s) starts\n", ctrl->dev->bus);
+	dev_info(ctrl->device, "nvme_reset_ctrl (%s) starts\n", ctrl->dev->bus->name);
 	if (!nvme_change_ctrl_state(ctrl, NVME_CTRL_RESETTING))
 		return -EBUSY;
 	if (!queue_work(nvme_reset_wq, &ctrl->reset_work))
