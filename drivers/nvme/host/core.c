@@ -2485,7 +2485,7 @@ static void nvme_init_subnqn(struct nvme_subsystem *subsys,
 
 		if (ctrl->vs >= NVME_VS(1, 2, 1))
 			dev_warn(ctrl->device,
-				 "missing or invalid SUBNQN field123.\n");
+				 "missing or invalid SUBNQN field.\n");
 	}
 
 	/* Generate a "fake" NQN per Figure 254 in NVMe 1.3 + ECN 001 */
