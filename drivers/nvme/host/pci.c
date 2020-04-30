@@ -2263,7 +2263,6 @@ retry:
 
 		timeout = wait_for_completion_io_timeout(&nvmeq->delete_done,
 							 timeout);
-		printk("timeout=%f\n", ADMIN_TIMEOUT - timeout);
 		if (timeout == 0)
 			return false;
 
@@ -2271,6 +2270,7 @@ retry:
 		if (nr_queues)
 			goto retry;
 	}
+	printk("timeout=%ld\n", ADMIN_TIMEOUT - timeout);
 	return true;
 }
 
