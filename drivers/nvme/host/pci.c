@@ -2236,6 +2236,7 @@ static bool __nvme_disable_io_queues(struct nvme_dev *dev, u8 opcode)
 	int nr_queues = dev->online_queues - 1, sent = 0;
 	unsigned long timeout;
 
+	dev_info(dev->ctrl.device, "__nvme_disable_io_queues\n");
  retry:
 	timeout = ADMIN_TIMEOUT;
 	while (nr_queues > 0) {
