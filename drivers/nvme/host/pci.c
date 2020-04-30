@@ -2845,12 +2845,13 @@ static int nvme_probe(struct pci_dev *pdev, const struct pci_device_id *id)
 		result = -ENOMEM;
 		goto release_pools;
 	}
-
+	printk("nvme_init_ctrl Starts\n");
 	result = nvme_init_ctrl(&dev->ctrl, &pdev->dev, &nvme_pci_ctrl_ops,
 				quirks);
 	if (result)
 		goto release_mempool;
 
+	printk("nvme_init_ctrl is Done\n");
 	dev_info(dev->ctrl.device, "pci function %s\n", dev_name(&pdev->dev));
 
 	nvme_reset_ctrl(&dev->ctrl);
