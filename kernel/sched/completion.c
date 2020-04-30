@@ -105,7 +105,7 @@ __wait_for_common(struct completion *x,
 	spin_unlock_irq(&x->wait.lock);
 
 	complete_release(x);
-
+	printk("timeout = %ld\n",timeout);
 	return timeout;
 }
 
