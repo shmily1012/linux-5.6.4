@@ -2249,7 +2249,7 @@ static bool __nvme_disable_io_queues(struct nvme_dev *dev, u8 opcode)
 	int nr_queues = dev->online_queues - 1, sent = 0;
 	unsigned long timeout;
 
-	dev_info(dev->ctrl.device, "__nvme_disable_io_queues\n");
+	// dev_info(dev->ctrl.device, "__nvme_disable_io_queues\n");
 retry:
 	timeout = ADMIN_TIMEOUT;
 	while (nr_queues > 0) {
@@ -2270,7 +2270,6 @@ retry:
 		if (nr_queues)
 			goto retry;
 	}
-	printk("timeout=%ld\n", ADMIN_TIMEOUT - timeout);
 	return true;
 }
 
@@ -2800,7 +2799,7 @@ static int nvme_probe(struct pci_dev *pdev, const struct pci_device_id *id)
 	struct nvme_dev *dev;
 	unsigned long quirks = id->driver_data;
 	size_t alloc_size;
-
+	printk("nvme_probe\n");
 	node = dev_to_node(&pdev->dev);
 	if (node == NUMA_NO_NODE)
 		set_dev_node(&pdev->dev, first_memory_node);
